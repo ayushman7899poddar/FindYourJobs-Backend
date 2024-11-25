@@ -39,6 +39,16 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
 
+app.get("/api/v1/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Server is running smoothly",
+    uptime: process.uptime(),
+    timestamp: new Date(),
+  });
+});
+
+
 newsLetterCron()
 connection();
 app.use(errorMiddleware);
